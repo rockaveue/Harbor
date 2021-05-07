@@ -1,0 +1,115 @@
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+DROP TABLE IF EXISTS `company`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `company` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `contact_person` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `migrations` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `myrank`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `myrank` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `rank_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rank_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `service_history`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `service_history` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `sailor_id` bigint(20) unsigned NOT NULL,
+  `rank_id` bigint(20) unsigned NOT NULL,
+  `vessel_id` bigint(20) unsigned NOT NULL,
+  `sign_on_date` date NOT NULL,
+  `sign_on_port` int(11) NOT NULL,
+  `sign_off_date` date NOT NULL,
+  `sign_off_port` int(11) NOT NULL,
+  `contract_period` int(11) NOT NULL,
+  `contract_end_date` date NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `service_history_sailor_id_foreign` (`sailor_id`),
+  KEY `service_history_rank_id_foreign` (`rank_id`),
+  KEY `service_history_vessel_id_foreign` (`vessel_id`),
+  CONSTRAINT `service_history_rank_id_foreign` FOREIGN KEY (`rank_id`) REFERENCES `myrank` (`id`),
+  CONSTRAINT `service_history_sailor_id_foreign` FOREIGN KEY (`sailor_id`) REFERENCES `sailor` (`id`),
+  CONSTRAINT `service_history_vessel_id_foreign` FOREIGN KEY (`vessel_id`) REFERENCES `vessel` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `users` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sailor_id` int(11) DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `users_email_unique` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `vessel`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vessel` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `vessel_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_id` bigint(20) unsigned NOT NULL,
+  `vessel_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vessel_flag` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `vessel_company_id_foreign` (`company_id`),
+  CONSTRAINT `vessel_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `company` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+INSERT INTO `migrations` VALUES (9,'2021_04_12_030338_create_company_table',1);
+INSERT INTO `migrations` VALUES (10,'2021_04_15_094729_create_table_myrank',1);
+INSERT INTO `migrations` VALUES (11,'2021_04_15_094819_create_table_vessel',1);
+INSERT INTO `migrations` VALUES (13,'2021_04_15_094900_create_table_service_history',1);
+INSERT INTO `migrations` VALUES (14,'2021_04_15_104219_create_users_table',2);
