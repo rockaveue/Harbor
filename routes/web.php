@@ -26,14 +26,14 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 // 
-Route::get('burtgel','App\Http\Controllers\sailorController@registerForm');
+Route::get('burtgel','App\Http\Controllers\sailorController@registerForm')->name('burtgel');
 Route::post('burtgel','App\Http\Controllers\sailorController@register');
 
-Route::get('history','App\Http\Controllers\sailorController@showServiceHistory');
+Route::get('history','App\Http\Controllers\sailorController@showServiceHistory')->name('history');
 Route::get('sailors/{sailor_id}','App\Http\Controllers\sailorController@signOffSailor');
 
-
-Route::get('ajluud','App\Http\Controllers\userController@jobOffers');
+Route::get('sailors', 'App\Http\Controllers\userController@sailorList')->name('sailors');
+Route::get('ajluud','App\Http\Controllers\userController@jobOffers')->name('ajluud');
 Route::get('ajluud/{id}','App\Http\Controllers\userController@jobOffer');
 Route::post('ajluud/{id}','App\Http\Controllers\userController@assignOffer');
 

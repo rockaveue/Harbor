@@ -20,8 +20,8 @@ class CreateTableServiceHistory extends Migration
             $table->unsignedBigInteger('vessel_id');
             $table->date('sign_on_date');
             $table->integer('sign_on_port');            
-            $table->date('sign_off_date');
-            $table->integer('sign_off_port');
+            $table->date('sign_off_date')->nullable();
+            $table->integer('sign_off_port')->nullable();
             $table->integer('contract_period');
             $table->date('contract_end_date');
             $table->foreign('sailor_id')->references('id')->on('sailor');

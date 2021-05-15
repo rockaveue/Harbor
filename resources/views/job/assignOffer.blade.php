@@ -15,6 +15,7 @@
                 <td>{{$item->id}}</td>
                 <td>{{$item->company_id}}</td>
                 <td>{{$item->rank_id}}</td>
+                <td>{{$item->vessel_id}}</td>
                 <td>{{$item->contract_period}}</td>
                 <td>{{$item->contract_end_date}}</td>
                 <td>{{($item->state == 1)?'Идэвхтэй':'Идэвхгүй'}}</td>

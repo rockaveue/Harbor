@@ -1,5 +1,8 @@
-{{-- B180910044 --}}
+{{-- B180910044 Battushig--}}
 @extends('layouts.admin')
+@section('header')
+    Ажилтан бүртгэх хэсэг
+@endsection
 @section('content')
 <div class="flex flex-col w-full max-w-ws justify-center">
     <form action="" method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">

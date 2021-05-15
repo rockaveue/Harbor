@@ -12,8 +12,23 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('burtgel')" :active="request()->routeIs('burtgel')">
+                        {{ __('Бүртгэл') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('sailors')" :active="request()->routeIs('sailors')">
+                        {{ __('Далайчид') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('ajluud')" :active="request()->routeIs('ajluud')">
+                        {{ __('Ажлууд') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                        {{ __('Түүх') }}
                     </x-nav-link>
                 </div>
             </div>
