@@ -25,9 +25,22 @@ class sailorController extends Controller
         return view('sailor.historyService', compact('history'));
     }
 
-    public function signOffSailor($sailor_id){
-        $mysailor = DB::table('sailor')->where('id', '=', $sailor_id)->first();
-        $sailor = json_encode($mysailor);
+    public function editSailor($sailor_id){
+        $sailor = DB::table('sailor')->where('id', '=', $sailor_id)->first();
+        // $sailor = json_encode($mysailor);
         return view('sailor.sailor', compact('sailor'));
+    }
+
+    public function updateSailor(Request $request, $sailor_id){
+        
+        // 'sailor_id' => ['required', 'boolean'],
+        // 'sailor_name' => ['required'],
+        $validated = $request->validate([
+            // 'job_status' => ['required', 'regex:/^(3|4|5)$/u'],
+            'job_status' => ['required', 'regex:/^(1|3|4|5)$/u'],
+        ]);
+        DB::table('sailor')->where('id', $sailor_id)->update(['job_status' => $request->job_status]);
+
+        return redirect()->back()->with('message', 'Амжилттай ажилтныг мэдээллийг засварлалаа');
     }
 }

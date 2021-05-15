@@ -30,7 +30,9 @@ Route::get('burtgel','App\Http\Controllers\sailorController@registerForm')->name
 Route::post('burtgel','App\Http\Controllers\sailorController@register');
 
 Route::get('history','App\Http\Controllers\sailorController@showServiceHistory')->name('history');
-Route::get('sailors/{sailor_id}','App\Http\Controllers\sailorController@signOffSailor');
+
+Route::get('sailors/{sailor_id}','App\Http\Controllers\sailorController@editSailor');
+Route::post('sailors/{sailor_id}','App\Http\Controllers\sailorController@updateSailor');
 
 Route::get('sailors', 'App\Http\Controllers\userController@sailorList')->name('sailors');
 Route::get('ajluud','App\Http\Controllers\userController@jobOffers')->name('ajluud');

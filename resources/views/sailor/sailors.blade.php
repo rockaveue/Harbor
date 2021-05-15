@@ -29,7 +29,7 @@
                     $rank = '2-р офицер';
                 }
             @endphp
-                <tr>
+                <tr onclick="window.location = '{{$location}}sailors/{{$item->id}}'">
                     <td>{{$item->id}}</td>
                     <td>{{$item->job_status}}</td>
                     <td>{{$item->sailor_name}}</td>

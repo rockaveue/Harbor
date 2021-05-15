@@ -34,8 +34,8 @@ class userController extends Controller
             // Carbon::now()->addDays($myjob->contract_period)
             DB::insert('insert into service_history(sailor_id,rank_id,vessel_id,sign_on_date, sign_on_port, sign_off_date,sign_off_port,contract_period,contract_end_date) values(?, ?, ?, ?, ?, ?, ?, ?, ?)', [$request->sailorId, $myjob->rank_id, $myjob->vessel_id, Carbon::now(), $myjob->sign_on_port, null,  null, $myjob->contract_period, $myjob->contract_end_date ]);
             
-            DB::table('job_offer')->where('id', $id)->update(['job_status'=>2]);
-            DB::table('sailor')->where('id', $request->sailorId)->update(['state'=>2]);
+            DB::table('job_offer')->where('id', $id)->update(['state'=>2]);
+            DB::table('sailor')->where('id', $request->sailorId)->update(['job_status'=>2]);
         });
         return redirect()->back()->with('message', 'Амжилттай ажилтныг бүртгэлээ');
     }
