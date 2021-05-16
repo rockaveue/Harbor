@@ -5,32 +5,48 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('login') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
-
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('burtgel')" :active="request()->routeIs('burtgel')">
-                        {{ __('Бүртгэл') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('sailors')" :active="request()->routeIs('sailors')">
-                        {{ __('Далайчид') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('ajluud')" :active="request()->routeIs('ajluud')">
-                        {{ __('Ажлууд') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
-                        {{ __('Түүх') }}
-                    </x-nav-link>
-                </div>
+                @if (Auth::check() && Auth::user()->roles =='admin')
+                    <!-- Navigation Links -->
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('burtgel')" :active="request()->routeIs('burtgel')">
+                            {{ __('Бүртгэл') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('sailors')" :active="request()->routeIs('sailors')">
+                            {{ __('Далайчид') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('ajluud')" :active="request()->routeIs('ajluud')">
+                            {{ __('Ажлууд') }}
+                        </x-nav-link>
+                    </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                            {{ __('Түүх') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+                @if (Auth::check() && Auth::user()->roles =='company')
+                    
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('mycompany')" :active="request()->routeIs('mycompany')">
+                            {{ __('Company') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+                @if (Auth::check() && Auth::user()->roles =='sailor')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('company')" :active="request()->routeIs('company')">
+                            {{ __('Далайчин') }}
+                        </x-nav-link>
+                    </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->

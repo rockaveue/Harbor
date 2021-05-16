@@ -16,15 +16,21 @@ class userController extends Controller
 
     public function jobOffers(){
         $jobs = DB::table('job_offer')->get();
-        return view('job.jobOffers', compact('jobs'));
+        $ranks = DB::table('myrank')->get();
+        $vessels = DB::table('vessel')->get();
+        $companies = DB::table('company')->get();
+        // $vessels = json_encode($vessel);
+        return view('job.jobOffers', compact('jobs', 'ranks', 'vessels', 'companies'));
     }
-
+    
     public function jobOffer($id){
         $job = DB::select('select * from job_offer where id = ?', [$id]);
         $status = [1,2,4];
+        $ranks = DB::table('myrank')->get();
+        
         $sailors = DB::table('Sailor')->where('rank_id', $job[0]->rank_id)->whereIn('job_status', $status)->get();
-
-        return view('job.assignOffer', compact('job', 'sailors'));
+        
+        return view('job.assignOffer', compact('job', 'sailors', 'ranks'));
     }
     public function assignOffer(Request $request, $id){
         $myjob = DB::table('job_offer')->where('id', '=', $id)->first();
@@ -42,6 +48,7 @@ class userController extends Controller
     
     public function sailorList(){
         $sailors = DB::table('sailor')->get();
-        return view('sailor.sailors', compact('sailors'));
+        $ranks = DB::table('myrank')->get();
+        return view('sailor.sailors', compact('sailors', 'ranks'));
     }
 }

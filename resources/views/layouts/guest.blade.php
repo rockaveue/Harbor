@@ -17,8 +17,10 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
-            {{ $slot }}
+        <div class="grid grid-cols-3 mt-20">
+            <div class="col-start-2 mt-20">
+                @yield('content')
+            </div>
         </div>
     </body>
 </html>

@@ -5,6 +5,7 @@
 @section('content')
 @php
     $location = 'http://127.0.0.1:8000/';
+    $myrank = json_decode($ranks);
 @endphp
     @isset($sailors)
         <table id="mytable">
@@ -23,11 +24,8 @@
             </tr>
             @foreach ($sailors as $item)
             @php
-                if ($item->rank_id == 1){
-                    $rank = 'гишүүн';
-                } else if($item->rank_id == 2){
-                    $rank = '2-р офицер';
-                }
+                $rank = $myrank[$item->rank_id - 1]->rank_name;
+                
             @endphp
                 <tr onclick="window.location = '{{$location}}sailors/{{$item->id}}'">
                     <td>{{$item->id}}</td>

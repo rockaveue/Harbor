@@ -18,7 +18,8 @@
             <option value="2">1-р офицер</option>
             <option value="3">2-р офицер</option>
             <option value="4">инженер</option>
-            <option value="5"></option>
+            <option value="5">ахмад</option>
+            <option value="6">дэд ахмад</option>
         </select>
         </div>
         

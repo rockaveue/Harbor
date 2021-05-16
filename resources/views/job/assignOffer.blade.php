@@ -26,6 +26,7 @@
 @section('content')
     @php
     $location = 'http://127.0.0.1:8000/';
+    $myrank = json_decode($ranks);
     @endphp
     
     <h2>Ажиллах боломжтой ажилчид</h2>
@@ -37,10 +38,13 @@
             <th>Төлөв</th>
         </tr>
         @foreach ($sailors as $item)
+        @php
+            $rank = $myrank[$item->rank_id - 1]->rank_name;
+        @endphp
             <tr>
                 <td>{{$item->id}}</td>
                 <td>{{$item->sailor_name}}</td>
-                <td>{{$item->rank_id}}</td>
+                <td>{{$rank}}</td>
                 <td>{{($item->job_status == 1 || $item->job_status == 4 || $item->job_status == 5)? 'Боломжтой' : 'Боломжгүй'}}</td>
             </tr>
         @endforeach

@@ -25,18 +25,27 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-// 
-Route::get('burtgel','App\Http\Controllers\sailorController@registerForm')->name('burtgel');
-Route::post('burtgel','App\Http\Controllers\sailorController@register');
+// admin stuff
+Route::get('burtgel','App\Http\Controllers\sailorController@registerForm')->middleware('auth', 'role:admin')->name('burtgel');
+Route::post('burtgel','App\Http\Controllers\sailorController@register')->middleware('auth', 'role:admin', 'XSS');
 
-Route::get('history','App\Http\Controllers\sailorController@showServiceHistory')->name('history');
+Route::get('history','App\Http\Controllers\sailorController@showServiceHistory')->middleware('auth', 'role:admin')->name('history');
 
-Route::get('sailors/{sailor_id}','App\Http\Controllers\sailorController@editSailor');
-Route::post('sailors/{sailor_id}','App\Http\Controllers\sailorController@updateSailor');
+Route::get('sailors/{sailor_id}','App\Http\Controllers\sailorController@editSailor')->middleware('auth', 'role:admin');
+Route::post('sailors/{sailor_id}','App\Http\Controllers\sailorController@updateSailor')->middleware('auth', 'role:admin', 'XSS');
 
-Route::get('sailors', 'App\Http\Controllers\userController@sailorList')->name('sailors');
-Route::get('ajluud','App\Http\Controllers\userController@jobOffers')->name('ajluud');
-Route::get('ajluud/{id}','App\Http\Controllers\userController@jobOffer');
-Route::post('ajluud/{id}','App\Http\Controllers\userController@assignOffer');
+Route::get('sailors', 'App\Http\Controllers\userController@sailorList')->middleware('auth', 'role:admin')->name('sailors');
+Route::get('ajluud','App\Http\Controllers\userController@jobOffers')->middleware('auth', 'role:admin')->name('ajluud');
+Route::get('ajluud/{id}','App\Http\Controllers\userController@jobOffer')->middleware('auth', 'role:admin');
+Route::post('ajluud/{id}','App\Http\Controllers\userController@assignOffer')->middleware('auth', 'role:admin', 'XSS');
+
+// company route
+
+Route::get('mycompany', 'App\Http\Controllers\companyController@getSailors')->middleware('auth', 'role:company')->name('mycompany');
+
+//sailor route
+
+Route::get('company', 'App\Http\Controllers\sailController@getCompany')->middleware('auth', 'role:sailor')->name('company');
+
 
 require __DIR__.'/auth.php';
