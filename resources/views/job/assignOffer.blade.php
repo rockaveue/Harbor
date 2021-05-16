@@ -1,7 +1,7 @@
 {{-- B18090062 Dulguun --}}
 @extends('layouts.admin')
 @section('header')
-    <table>
+    {{-- <table>
         <tr>
             <th>#</th>
             <th>Company</th>
@@ -21,7 +21,7 @@
                 <td>{{($item->state == 1)?'Идэвхтэй':'Идэвхгүй'}}</td>
             </tr>
         @endforeach
-    </table>
+    </table> --}}
 @endsection
 @section('content')
     @php
@@ -29,7 +29,7 @@
     $myrank = json_decode($ranks);
     @endphp
     
-    <h2>Ажиллах боломжтой ажилчид</h2>
+    <label class="block text-gray-700 text-sm font-bold mb-2"> Хуваарилагдах боломжтой болон боломжгүй ажилчид</label>
     <table id="mytable">
         <tr>
             <th>#</th>

@@ -26,6 +26,8 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 
 // admin stuff
+// B180910062 Dulguun
+// B180910044 Battushig
 Route::get('burtgel','App\Http\Controllers\sailorController@registerForm')->middleware('auth', 'role:admin')->name('burtgel');
 Route::post('burtgel','App\Http\Controllers\sailorController@register')->middleware('auth', 'role:admin', 'XSS');
 

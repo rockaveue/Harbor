@@ -1,3 +1,4 @@
+{{-- B180910044 Battushig --}}
 @extends('layouts.admin')
 @section('content')
     @isset($company)
@@ -5,7 +6,7 @@
             // print_r($company);
             // print_r($history)
         @endphp
-    <label for="" class="block text-gray-700 text-xl font-bold mb-2">Одоо ажиллаж буй компанийн мэдээлэл</label>
+    <label for="" class="block text-gray-700 text-xl font-bold mb-2">Компанийн мэдээлэл</label>
     <table class="mx-auto max-w-4xl w-full whitespace-nowrap rounded-lg bg-white divide-y divide-gray-300 overflow-hidden">
         <tr class="text-gray-600 text-left">
             <td class="font-bold text-sm uppercase px-6 py-4">Компанийн дугаар</td>

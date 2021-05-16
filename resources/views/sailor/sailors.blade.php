@@ -1,3 +1,4 @@
+{{-- B180910044 Battushig --}}
 @extends('layouts.admin')
 @section('header')
     Далайчдын мэдээлэл

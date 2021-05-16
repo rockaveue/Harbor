@@ -2,6 +2,7 @@
 // B180910044 Battushig
 namespace App\Http\Controllers;
 
+use App\Models\ServiceHistory;
 use Illuminate\Database\Eloquent\JsonEncodingException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,7 +41,14 @@ class sailorController extends Controller
             'job_status' => ['required', 'regex:/^(1|3|4|5)$/u'],
         ]);
         DB::table('sailor')->where('id', $sailor_id)->update(['job_status' => $request->job_status]);
-
+        $myService = ServiceHistory::where('sailor_id','=', $sailor_id)->where('sign_off_date','=', null)->first();
+        // $service = json_decode($myService);
+        if($myService != null){
+            // return redirect()->back()->with('message', $myService->sign_on_port);
+            DB::table('service_history')->where('sailor_id', $sailor_id)->where('sign_off_date', null)->update(['sign_off_port' => $myService->sign_on_port, 'sign_off_date' => now()]);
+        }
+        // $service = json_decode($myService);
+        
         return redirect()->back()->with('message', 'Амжилттай ажилтныг мэдээллийг засварлалаа');
     }
 }

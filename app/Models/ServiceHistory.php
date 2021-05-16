@@ -1,5 +1,5 @@
 <?php
-
+// B180910062 Dulguun
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;

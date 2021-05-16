@@ -1,5 +1,5 @@
 <?php
-
+// B180910062 Dulguun
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;

@@ -10,7 +10,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+// B180910062 Dulguun
 Route::get('login', 'App\Http\Controllers\loginController@login')->name('login');
 Route::post('login', 'App\Http\Controllers\loginController@dologin');
 Route::post('logout', 'App\Http\Controllers\loginController@logout')->name('logout');

@@ -1,3 +1,4 @@
+{{-- B180910062 Dulguun --}}
 @extends('layouts.guest')
 @section('content')
 <div >
