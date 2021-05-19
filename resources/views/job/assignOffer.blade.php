@@ -22,6 +22,8 @@
             </tr>
         @endforeach
     </table> --}}
+    <label for="">Ажлын байрын дугаар</label>
+    <label for="">{{$job[0]->id}}</label>
 @endsection
 @section('content')
     @php
@@ -55,7 +57,7 @@
             Ажилчны id-г оруулна уу
             <tr>
                 <td>id: </td>
-                <td><input type="text" name="sailorId" class="border py-2 px-3 text-grey-darkes"></td>
+                <td><input type="text" name="sailorId"  class="shadow appearance-none border rounded w-1/2 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></td>
             </tr>
             <tr><td><button type="submit" class="bg-blue-500     hover:bg-blue-dark text-white font-bold py-2 px-4 rounded">Ажилд оноох</button></td></tr>
         </table>

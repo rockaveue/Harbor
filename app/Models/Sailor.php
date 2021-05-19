@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Sailor extends Model
 {
     // use HasFactory;
-    
+    protected $table = 'sailor';
     protected $fillable = [
         'rank_id',
         'sailor_name',

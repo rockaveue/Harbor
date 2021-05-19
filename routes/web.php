@@ -31,13 +31,29 @@ Route::get('/dashboard', function () {
 Route::get('burtgel','App\Http\Controllers\sailorController@registerForm')->middleware('auth', 'role:admin')->name('burtgel');
 Route::post('burtgel','App\Http\Controllers\sailorController@register')->middleware('auth', 'role:admin', 'XSS');
 
-Route::get('history','App\Http\Controllers\sailorController@showServiceHistory')->middleware('auth', 'role:admin')->name('history');
 
+Route::get('history','App\Http\Controllers\sailorController@showServiceHistory')->middleware('auth', 'role:admin')->name('history');
+Route::post('history', 'App\Http\Controllers\sailorController@searchFromHistory')->middleware('auth', 'role:admin');
+
+
+// sailors
 Route::get('sailors/{sailor_id}','App\Http\Controllers\sailorController@editSailor')->middleware('auth', 'role:admin');
 Route::post('sailors/{sailor_id}','App\Http\Controllers\sailorController@updateSailor')->middleware('auth', 'role:admin', 'XSS');
 
+
 Route::get('sailors', 'App\Http\Controllers\userController@sailorList')->middleware('auth', 'role:admin')->name('sailors');
+Route::post('sailors', 'App\Http\Controllers\userController@searchSailors')->middleware('auth', 'role:admin');
+
+Route::post('sortTable', 'App\Http\Controllers\userController@sailorListOrder')->middleware('auth', 'role:admin');
+Route::post('sortTable2', 'App\Http\Controllers\sailorController@historyServiceOrder')->middleware('auth', 'role:admin');
+Route::post('sortTable3', 'App\Http\Controllers\userController@jobOfferOrder')->middleware('auth', 'role:admin');
+
+
+//job offer
 Route::get('ajluud','App\Http\Controllers\userController@jobOffers')->middleware('auth', 'role:admin')->name('ajluud');
+Route::post('ajluud','App\Http\Controllers\userController@searchJobOffer')->middleware('auth', 'role:admin');
+
+
 Route::get('ajluud/{id}','App\Http\Controllers\userController@jobOffer')->middleware('auth', 'role:admin');
 Route::post('ajluud/{id}','App\Http\Controllers\userController@assignOffer')->middleware('auth', 'role:admin', 'XSS');
 
